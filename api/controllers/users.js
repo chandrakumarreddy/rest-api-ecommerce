@@ -17,7 +17,9 @@ const SIGNUP = (req, res) => {
         });
         res.json({
           success: true,
-          token: jwt.sign({ _id: user._id }, process.env.SECRET_KEY)
+          token: jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
+            expiresIn: 60 * 60
+          })
         });
       });
     });
