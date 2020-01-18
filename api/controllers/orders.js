@@ -13,14 +13,18 @@ const GET_ORDERS = async (req, res) => {
 };
 
 const ADD_ORDER = async (req, res) => {
-  const order = await Order.create({
-    ...req.body,
-    _id: new mongoose.Types.ObjectId()
-  });
-  return res.json({
-    order: { _id: order._id },
-    request: { url: `http://localhost:3000/orders`, method: "POST" }
-  });
+  try {
+    const order = await Order.create({
+      ...req.body,
+      _id: new mongoose.Types.ObjectId()
+    });
+    return res.json({
+      order: { _id: order._id },
+      request: { url: `http://localhost:3000/orders`, method: "POST" }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const UPDATE_ORDER = async (req, res) => {

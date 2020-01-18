@@ -5,15 +5,16 @@ const {
   UPDATE_ORDER,
   DELETE_ORDER
 } = require("../controllers/orders");
+const checkAuth = require("../../middlewares/checkAuth");
 
 router
   .route("/")
   .get(GET_ORDERS)
-  .post(ADD_ORDER);
+  .post(checkAuth, ADD_ORDER);
 
 router
   .route("/:id")
-  .put(UPDATE_ORDER)
-  .delete(DELETE_ORDER);
+  .put(checkAuth, UPDATE_ORDER)
+  .delete(checkAuth, DELETE_ORDER);
 
 module.exports = router;
