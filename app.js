@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 // routes
 app.use("/products", require("./api/routes/products"));
 app.use("/orders", require("./api/routes/orders"));
+app.use("/users", require("./api/routes/users"));
 
 // serve static files
 app.use("/uploads", express.static("./uploads"));
